@@ -1,0 +1,194 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #EEF5FF;
+  overflow: hidden;
+}
+
+#map {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+header.page-header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: #176B87;
+  color: white;
+  text-align: center;
+  font-size: 28px;
+  padding: 15px;
+  z-index: 1002;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: slideInDown 1s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.controls, .distance-controls, .legend, .button-panel {
+  animation: fadeInUp 1.2s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.controls, .distance-controls, .legend {
+  background: #B4D4FF;
+  padding: 12px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+
+.controls {
+  position: absolute;
+  top: 80px;
+  left: 10px;
+}
+
+.distance-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+}
+
+.legend {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+}
+
+.button-panel {
+  position: absolute;
+  top: 80px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.btn {
+  background: #176B87;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  animation: popIn 0.8s ease-in-out;
+}
+
+.btn:hover {
+  background: #86B6F6;
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(23,107,135,0.4);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.dropdown {
+  display: none;
+  background: #EEF5FF;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 4px;
+  animation: dropdownFade 0.4s ease-out;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: scaleY(0.9); }
+  to { opacity: 1; transform: scaleY(1); }
+}
+
+input[type="text"] {
+  width: 160px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#distanceResult {
+  margin-top: 8px;
+  color: #176B87;
+  font-weight: bold;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 3px 0;
+}
+
+.popup-content {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+.popup-content strong {
+  color: #176B87;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 3px 0;
+}
+
+.legend-color, .legend-line {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  border: 1px solid #333;
+}
+
+.legend-line {
+  height: 4px;
+  width: 20px;
+  margin-top: 6px;
+}
+
+.legend-container {
+  position: static;
+}
+
+.layer-info {
+  display: none;
+  position: absolute;
+  right: 10px;
+  bottom: 215px;
+  background-color: #ffffff;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}

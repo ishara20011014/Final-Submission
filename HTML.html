@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=2.0"/>
+  <title>The Land Development Lens</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="page-header">The Land Development Lens</header>
+  <div id="map"></div>
+
+  <div class="controls">
+    <input type="text" placeholder="Search location..." id="searchBar" />
+    <br /><br />
+    <button class="btn" onclick="searchLocation()">Search</button>
+  </div>
+
+  <div class="distance-controls">
+    <button class="btn" onclick="startDistanceMeasure()">Distance Calculator</button>
+    <button class="btn" onclick="resetDistance()">Refresh</button>
+    <div id="distanceResult">Distance: -</div>
+  </div>
+
+  <div class="button-panel">
+    <div>
+      <button class="btn" onclick="toggleDropdown('envOptions')">Environmental</button>
+      <div class="dropdown" id="envOptions">
+        <input type="radio" name="layer" onchange="toggleLayer('slope', 'environmental')"> Slope<br>
+        <input type="radio" name="layer" onchange="toggleLayer('elevation', 'environmental')"> Elevation<br>
+      </div>
+    </div>
+    <div>
+      <button class="btn" onclick="toggleDropdown('infraOptions')">Infrastructure</button>
+      <div class="dropdown" id="infraOptions">
+        <label><input type="radio" name="layer" onchange="toggleLayer('roads', 'infrastructural')" /> Road Layer</label><br />
+        <label><input type="radio" name="layer" onchange="toggleLayer('schools', 'infrastructural')" /> Schools</label><br />
+        <label><input type="radio" name="layer" onchange="toggleLayer('training', 'infrastructural')" /> Vocational Training</label><br />
+        <label><input type="radio" name="layer" onchange="toggleLayer('hospitals', 'infrastructural')" /> Hospitals</label>
+      </div>
+    </div>
+    <div>
+      <button class="btn" style="background-color: #8B0000;" onclick="toggleLayer('developableLand', 'developable')">Developable Lands</button>
+    </div>
+  </div>
+
+  <div id="layerInfo" class="layer-info">
+    <strong>Layer Info:</strong> Land Development Potential ranges from 1 (Very Poor) to 5 (Excellent).
+  </div>
+
+  <div class="legend" id="legend">
+    <strong>Legend:</strong>
+    <div id="legendContent">No layers selected.</div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
