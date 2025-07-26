@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Developable Land Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Urbanist', sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #cfd8dc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card h1 {
+            font-size: 32px;
+            color: #0d47a1;
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            font-size: 15px;
+            color: #37474f;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 14px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background: #0d47a1;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #1565c0;
+        }
+
+        .btn:nth-child(2) {
+            background: #00acc1;
+        }
+
+        .btn:nth-child(2):hover {
+            background: #00838f;
+        }
+
+        .btn:nth-child(3) {
+            background: #0074a1;
+        }
+
+        .btn:nth-child(3):hover {
+            background: #3e66d4;
+        }
+
+        .back-button {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            background: #455a64;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #263238;
+        }
+
+        @media (min-width: 600px) {
+            .btn-group {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Welcome to the Developable Land Portal</h1>
+    <p>Find areas ready for development or contribute valuable data to help others identify suitable land. Let's build a smarter, more informed future together.</p>
+
+    <div class="btn-group">
+        <button class="btn" onclick="window.location.href='file:///F:/web%20map/final%20layout/Final%20Touch/Final%20Touch/Final%20Touch/HTML.html'">🔍 Find Developable Land</button>
+        <button class="btn" onclick="window.open('https://arcg.is/1K5DCW0', '_blank')">📝 Update Land Record</button>
+        <button class="btn" onclick="window.location.href='file:///F:/web%20map/final%20layout/Decision%20Support.html'">🎯 PlanVibe</button>
+    </div>
+</div>
+
+<button class="back-button" onclick="window.location.href='file:///F:/web%20map/final%20layout/webpage%20design%203.html'">← Back</button>
+
+</body>
+</html>

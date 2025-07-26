@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Developable Land Information Reporting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #B8CFCE, #EAEFEF);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333446;
+    }
+
+    .container {
+      background: #ffffffee;
+      border-radius: 18px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+      width: 95%;
+      max-width: 1080px;
+      padding: 30px 40px;
+      animation: fadeInScale 0.8s ease forwards;
+      backdrop-filter: blur(10px);
+    }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333446;
+      font-weight: bold;
+      font-size: 1rem;
+      text-shadow: 0 1px 2px #7F8CAA;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 10px;
+      display: block;
+      font-size: 0.75rem;
+      color: #333446;
+    }
+
+    input, select, textarea {
+      padding: 8px 10px;
+      margin-top: 4px;
+      border-radius: 10px;
+      border: 2px solid #7F8CAA;
+      font-size: 0.75rem;
+      width: 100%;
+      background: #EAEFEF;
+      color: #333446;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #7F8CAA;
+      font-style: italic;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .half-width {
+      width: calc(50% - 10px);
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    .btn-group {
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .back-btn {
+      background-color: #B8CFCE;
+      color: #333446;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+    }
+
+    .submit-btn {
+      padding: 10px 16px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      background: #333446;
+      color: #EAEFEF;
+      box-shadow: 0 4px 12px rgba(51, 52, 70, 0.4);
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: #7F8CAA;
+    }
+
+    .map-container {
+      width: 100%;
+      height: 300px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      border: 2px solid #7F8CAA;
+    }
+
+    @media (max-width: 768px) {
+      form {
+        flex-direction: column;
+      }
+
+      .half-width {
+        width: 100%;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .back-btn, .submit-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Developable Land Information Reporting</h1>
+    </header>
+
+    <form id="landForm">
+      <div class="full-width">
+        <label for="landTitle">Land Name / Title</label>
+        <input type="text" id="landTitle" required placeholder="Enter land name" />
+      </div>
+
+      <div class="half-width">
+        <label for="district">District / Province</label>
+        <select id="district" required>
+          <option value="" disabled selected>Select District</option>
+          <option value="Kurunegala">Kurunegala</option>
+          <option value="Puttalam">Puttalam</option>
+          <option value="Colombo">Colombo</option>
+          <option value="Gampaha">Gampaha</option>
+        </select>
+      </div>
+
+      <div class="half-width">
+        <label for="landType">Land Type</label>
+        <select id="landType" required>
+          <option value="" disabled selected>Select Type</option>
+          <option value="Agricultural">Agricultural</option>
+          <option value="Residential">Residential</option>
+          <option value="Mixed">Mixed</option>
+        </select>
+      </div>
+
+      <div class="half-width">
+        <label for="area">Land Area (acres)</label>
+        <input type="number" id="area" required min="0" step="0.01" placeholder="e.g. 2.5" />
+      </div>
+
+      <div class="half-width">
+        <label for="ownership">Ownership Type</label>
+        <select id="ownership" required>
+          <option value="" disabled selected>Select Ownership</option>
+          <option value="Government">Government</option>
+          <option value="Private">Private</option>
+          <option value="Leasehold">Leasehold</option>
+        </select>
+      </div>
+
+      <div class="full-width">
+        <label for="potential">Development Potential</label>
+        <select id="potential" multiple size="6">
+          <option value="Water Access">Water Access</option>
+          <option value="Road Access">Road Access</option>
+          <option value="Urban Proximity">Urban Proximity</option>
+          <option value="Flat Terrain">Flat Terrain</option>
+          <option value="Electricity">Electricity</option>
+          <option value="Irrigation">Irrigation</option>
+        </select>
+      </div>
+
+      <div class="full-width">
+        <label for="issues">Issues / Obstacles</label>
+        <textarea id="issues" placeholder="e.g., legal issues, flooding..."></textarea>
+      </div>
+
+      <div class="full-width">
+        <label for="files">Photos / Documents</label>
+        <input type="file" id="files" multiple />
+      </div>
+
+      <div class="full-width">
+        <label for="latlng">Selected Coordinates</label>
+        <input type="text" id="latlng" readonly placeholder="Click on the map below" />
+      </div>
+
+      <div class="map-container" id="map"></div>
+
+      <div class="btn-group">
+        <button type="button" class="back-btn" onclick="history.back()">← Back</button>
+        <button type="submit" class="submit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    let map, marker;
+    function initMap() {
+      const center = { lat: 7.8731, lng: 80.7718 };
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 7,
+        center: center,
+        gestureHandling: "greedy",
+      });
+
+      map.addListener("click", function (e) {
+        placeMarker(e.latLng);
+        document.getElementById("latlng").value =
+          e.latLng.lat().toFixed(6) + ", " + e.latLng.lng().toFixed(6);
+      });
+    }
+
+    function placeMarker(position) {
+      if (marker) {
+        marker.setPosition(position);
+      } else {
+        marker = new google.maps.Marker({
+          position: position,
+          map: map,
+        });
+      }
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcWA5pjTscWx8TS9Cw0xw5-S7STddZq8A&callback=initMap" async defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

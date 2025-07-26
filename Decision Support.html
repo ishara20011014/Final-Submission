@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PlanVibe - Sustainability in every decision.</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #EEF5FF 0%, #B4D4FF 100%);
+      margin: 0;
+      color: #176B87;
+      min-height: 100vh;
+      animation: fadeIn 1s ease forwards;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 100px; /* for back button */
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 5px;
+      letter-spacing: 1.5px;
+      color: #176B87;
+      text-shadow: 0 2px 6px rgba(23,107,135,0.25);
+      animation: pulseColor 3s ease-in-out infinite alternate;
+    }
+
+    h1 span {
+      font-weight: 400;
+      font-size: 1.3rem;
+      color: #86B6F6;
+      display: block;
+      margin-top: 6px;
+      font-style: italic;
+      letter-spacing: 0.8px;
+      text-shadow: 0 1px 3px rgba(134,182,246,0.5);
+    }
+
+    h2 {
+      color: #176B87;
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      border-bottom: 3px solid #86B6F6;
+      padding-bottom: 6px;
+      letter-spacing: 0.7px;
+      text-shadow: 0 1px 3px rgba(23,107,135,0.3);
+    }
+
+    .tool-section {
+      background: #EEF5FF;
+      border-radius: 18px;
+      padding: 28px 35px;
+      margin-bottom: 34px;
+      box-shadow:
+        0 12px 18px rgba(23,107,135,0.15),
+        inset 0 0 12px #B4D4FF;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      animation: slideUp 0.7s ease forwards;
+    }
+
+    .tool-section:hover {
+      transform: translateY(-8px);
+      box-shadow:
+        0 20px 30px rgba(23,107,135,0.3),
+        inset 0 0 18px #86B6F6;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 8px;
+      font-weight: 600;
+      color: #176B87;
+      font-size: 1.05rem;
+      text-shadow: 0 0 2px #B4D4FF;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 2px solid #86B6F6;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #176B87;
+      background-color: #B4D4FF;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      box-shadow: inset 0 0 8px #EEF5FF;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+
+    input::placeholder, select option {
+      color: #176B87aa;
+      font-style: italic;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #176B87;
+      box-shadow: 0 0 15px #176B87cc;
+      background-color: #EEF5FF;
+      color: #0f4256;
+    }
+
+    button {
+      background-color: #176B87;
+      color: #EEF5FF;
+      font-weight: 700;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 1.15rem;
+      margin-top: 22px;
+      box-shadow: 0 7px 15px #86B6F6bb;
+      transition: background-color 0.35s ease, transform 0.25s ease, box-shadow 0.35s ease;
+      user-select: none;
+    }
+
+    button:hover {
+      background-color: #0f4e62;
+      box-shadow: 0 10px 25px #176B87cc;
+      transform: scale(1.1);
+    }
+
+    button:active {
+      transform: scale(0.95);
+      box-shadow: 0 5px 12px #0e3f4ecc;
+    }
+
+    .output {
+      margin-top: 24px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #176B87cc;
+      min-height: 1.6em;
+      text-shadow: 0 0 6px #86B6F6aa;
+      animation: fadeIn 0.6s ease forwards;
+      user-select: text;
+      line-height: 1.4;
+    }
+
+    .back-button {
+      position: fixed;
+      bottom: 22px;
+      left: 22px;
+      background-color: #176B87;
+      color: #EEF5FF;
+      padding: 14px 22px;
+      border-radius: 22px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 20px #0f4e62cc;
+      transition: background-color 0.3s ease, transform 0.22s ease, box-shadow 0.3s ease;
+      user-select: none;
+      z-index: 1000;
+      text-shadow: 0 0 8px #B4D4FFcc;
+    }
+
+    .back-button:hover {
+      background-color: #0f4e62;
+      box-shadow: 0 12px 30px #176B87dd;
+      transform: scale(1.12);
+    }
+
+    .back-button:active {
+      transform: scale(0.9);
+      box-shadow: 0 6px 14px #0c3b4dcc;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseColor {
+      0%, 100% {
+        color: #176B87;
+        text-shadow: 0 2px 6px rgba(23,107,135,0.25);
+      }
+      50% {
+        color: #86B6F6;
+        text-shadow: 0 2px 12px rgba(134,182,246,0.8);
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px 100px;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      h2 {
+        font-size: 1.4rem;
+      }
+      button {
+        font-size: 1rem;
+        padding: 12px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PlanVibe <span>Sustainability in every decision.</span></h1>
+
+    <!-- Cost-Benefit Estimator -->
+    <section class="tool-section">
+      <h2>💰 Cost-Benefit Estimator</h2>
+      <label>Land Area (in acres):</label>
+      <input type="number" id="area" placeholder="e.g., 2.5" />
+      <label>Development Cost per Acre (Rs.):</label>
+      <input type="number" id="cost" placeholder="e.g., 500000" />
+      <label>Expected Revenue per Acre (Rs.):</label>
+      <input type="number" id="revenue" placeholder="e.g., 800000" />
+      <button onclick="estimateCB()">Estimate</button>
+      <p class="output" id="cbResult"></p>
+    </section>
+
+    <!-- Land Value Calculator -->
+    <section class="tool-section">
+      <h2>🏷️ Land Value Calculator</h2>
+      <label>Location Category:</label>
+      <select id="location">
+        <option value="1000000">Urban</option>
+        <option value="600000">Semi-Urban</option>
+        <option value="300000">Rural</option>
+      </select>
+      <label>Area (acres):</label>
+      <input type="number" id="valueArea" placeholder="e.g., 3" />
+      <button onclick="calculateLandValue()">Calculate</button>
+      <p class="output" id="landValueResult"></p>
+    </section>
+
+    <!-- Suggested Development Types -->
+    <section class="tool-section">
+      <h2>🏗️ Suggested Development Types</h2>
+      <label>Soil Type:</label>
+      <select id="soil">
+        <option value="clay">Clay</option>
+        <option value="loam">Loam</option>
+        <option value="sandy">Sandy</option>
+        <option value="peat">Peat</option>
+        <option value="rocky">Rocky</option>
+        <option value="silt">Silt</option>
+        <option value="gravel">Gravel</option>
+        <option value="laterite">Laterite</option>
+        <option value="black cotton">Black Cotton</option>
+        <option value="red soil">Red Soil</option>
+      </select>
+      <label>Drainage Level:</label>
+      <select id="drainage">
+        <option value="good">Good</option>
+        <option value="moderate">Moderate</option>
+        <option value="poor">Poor</option>
+      </select>
+      <button onclick="suggestDevType()">Suggest</button>
+      <p class="output" id="suggestResult"></p>
+    </section>
+
+    <!-- Environmental Impact Alert -->
+    <section class="tool-section">
+      <h2>🌿 Environmental Impact Alert</h2>
+      <label>Proximity to Water Body (m):</label>
+      <input type="number" id="proximity" placeholder="e.g., 150" />
+      <label>Protected Zone?</label>
+      <select id="protected"><option>yes</option><option>no</option></select>
+      <label>Slope of the Land (°):</label>
+      <input type="number" id="slope" placeholder="e.g., 10" />
+      <label>Wetland?</label>
+      <select id="wetland"><option>yes</option><option>no</option></select>
+      <label>Flood-Prone?</label>
+      <select id="flood"><option>yes</option><option>no</option></select>
+      <label>Deforestation Risk?</label>
+      <select id="deforestation"><option>yes</option><option>no</option></select>
+      <label>Erosion Risk?</label>
+      <select id="erosion"><option>yes</option><option>no</option></select>
+      <label>Near Pollution Sources?</label>
+      <select id="pollution"><option>yes</option><option>no</option></select>
+      <button onclick="checkImpact()">Check</button>
+      <p class="output" id="impactAlert"></p>
+    </section>
+  </div>
+
+  <button class="back-button" onclick="history.back()">← Back</button>
+
+  <script>
+    function estimateCB() {
+      const area = parseFloat(document.getElementById('area').value);
+      const cost = parseFloat(document.getElementById('cost').value);
+      const revenue = parseFloat(document.getElementById('revenue').value);
+      if (isNaN(area) || isNaN(cost) || isNaN(revenue)) {
+        document.getElementById('cbResult').innerText = "Please enter valid numbers.";
+        return;
+      }
+      const profit = (revenue - cost) * area;
+      document.getElementById('cbResult').innerText = `Estimated Net Profit: Rs. ${profit.toLocaleString()}`;
+    }
+
+    function calculateLandValue() {
+      const rate = parseFloat(document.getElementById('location').value);
+      const area = parseFloat(document.getElementById('valueArea').value);
+      if (isNaN(rate) || isNaN(area)) {
+        document.getElementById('landValueResult').innerText = "Please enter valid numbers.";
+        return;
+      }
+      const value = rate * area;
+      document.getElementById('landValueResult').innerText = `Total Land Value: Rs. ${value.toLocaleString()}`;
+    }
+
+    function suggestDevType() {
+      const soil = document.getElementById("soil").value;
+      const drainage = document.getElementById("drainage").value;
+      let suggestion = "";
+      if (soil === "clay") {
+        suggestion = (drainage === "good") ?
+          "🏘️ Good for residential development and agriculture." :
+          "🏚️ Suitable for low-rise housing with drainage improvement.";
+      } else if (soil === "loam") {
+        suggestion = "🌾 Highly fertile: Ideal for agro-industrial development.";
+      } else if (soil === "sandy") {
+        suggestion = "🏖️ Suitable for tourism, resorts, and light structures.";
+      } else if (soil === "peat") {
+        suggestion = "🌱 Suitable for organic farming; avoid heavy construction.";
+      } else if (soil === "rocky") {
+        suggestion = "🔆 Best for solar farms or quarries.";
+      } else if (soil === "silt") {
+        suggestion = "🌿 Good for farming or parks; check water logging.";
+      } else if (soil === "gravel") {
+        suggestion = "🏭 Industrial use or foundation-heavy buildings possible.";
+      } else if (soil === "laterite") {
+        suggestion = "🏠 Good for traditional housing; needs treatment for agriculture.";
+      } else if (soil === "black cotton") {
+        suggestion = "⚠️ Swelling soil—requires special foundations for construction.";
+      } else if (soil === "red soil") {
+        suggestion = "🌾 Suitable for dry farming and residential zones.";
+      } else {
+        suggestion = "🧐 Please select a valid soil type.";
+      }
+      document.getElementById("suggestResult").innerText = suggestion;
+    }
+
+    function checkImpact() {
+      const p = v => document.getElementById(v).value;
+      const n = v => parseFloat(document.getElementById(v).value);
+      const risks = [];
+
+      if (!isNaN(n("proximity")) && n("proximity") < 100) risks.push("Too close to a water body.");
+      if (p("protected") === "yes") risks.push("Inside a protected zone.");
+      if (!isNaN(n("slope")) && n("slope") > 15) risks.push("Slope exceeds safe construction limit.");
+      if (p("wetland") === "yes") risks.push("Located in a wetland.");
+      if (p("flood") === "yes") risks.push("Flood-prone area.");
+      if (p("deforestation") === "yes") risks.push("Risk of deforestation.");
+      if (p("erosion") === "yes") risks.push("Erosion-prone area.");
+      if (p("pollution") === "yes") risks.push("Near pollution sources.");
+
+      const out = document.getElementById("impactAlert");
+      out.innerHTML = risks.length
+        ? "⚠️ Environmental Risk Detected:<br>• " + risks.join("<br>• ")
+        : "✅ Low environmental risk. Suitable for development.";
+      out.style.color = risks.length ? "#b00020" : "#2e7d32";
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
